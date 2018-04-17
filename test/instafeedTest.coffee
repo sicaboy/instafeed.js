@@ -72,16 +72,16 @@ describe 'Instafeed instace', ->
       data: []
     )).should.throw 'No images were returned from Instagram'
 
-  it 'should assemble a url using the client id', ->
-    feed = new Instafeed
-      clientId: 'test'
-    feed._buildUrl().should.equal "https://api.instagram.com/v1/media/popular?client_id=test&callback=instafeedCache#{feed.unique}.parse"
+  # it 'should assemble a url using the client id', ->
+  #   feed = new Instafeed
+  #     clientId: 'test'
+  #   feed._buildUrl().should.equal "https://api.instagram.com/v1/media/popular?client_id=test&callback=instafeedCache#{feed.unique}.parse"
 
-  it 'should use the access token for authentication, when available', ->
-    feed = new Instafeed
-      clientId: 'test'
-      accessToken: 'mytoken'
-    feed._buildUrl().should.equal "https://api.instagram.com/v1/media/popular?access_token=mytoken&callback=instafeedCache#{feed.unique}.parse"
+  # it 'should use the access token for authentication, when available', ->
+  #   feed = new Instafeed
+  #     clientId: 'test'
+  #     accessToken: 'mytoken'
+  #   feed._buildUrl().should.equal "https://api.instagram.com/v1/media/popular?access_token=mytoken&callback=instafeedCache#{feed.unique}.parse"
 
   it 'should refuse to build a url with invalid "get" option', ->
     feed = new Instafeed

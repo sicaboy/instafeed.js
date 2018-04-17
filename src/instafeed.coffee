@@ -294,7 +294,7 @@ class Instafeed
   # function to inject into the document hearder
   _buildUrl: ->
     # set the base API URL
-    base = "https://api.instagram.com/v1"
+    base = "/instagram_proxy.php?q="
 
     # get the endpoint based on @options.get
     switch @options.get

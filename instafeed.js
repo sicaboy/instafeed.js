@@ -238,7 +238,7 @@
 
     Instafeed.prototype._buildUrl = function() {
       var base, endpoint, final;
-      base = "https://api.instagram.com/v1";
+      base = "/instagram_proxy.php?q=";
       switch (this.options.get) {
         case "popular":
           endpoint = "media/popular";
