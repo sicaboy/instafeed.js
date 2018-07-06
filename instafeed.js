@@ -12,7 +12,9 @@
         sortBy: 'none',
         links: true,
         mock: false,
-        useHttp: false
+        useHttp: false,
+        apiBase: 'https://api.instagram.com/v1',
+        apiParamEncode: false
       };
       if (typeof params === 'object') {
         for (option in params) {
@@ -238,7 +240,7 @@
 
     Instafeed.prototype._buildUrl = function() {
       var base, endpoint, final;
-      base = "/instagram_proxy.php?q=";
+      base = this.options.apiBase;
       switch (this.options.get) {
         case "popular":
           endpoint = "media/popular";
@@ -274,6 +276,9 @@
         final += "&count=" + this.options.limit;
       }
       final += "&callback=instafeedCache" + this.unique + ".parse";
+      if (this.options.apiParamEncode === true) {
+        final = final.replace(/&/g, '%26');
+      }
       return final;
     };
 

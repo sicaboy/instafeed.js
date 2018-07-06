@@ -9,6 +9,8 @@ class Instafeed
       links: true
       mock: false
       useHttp: false
+      apiBase: 'https://api.instagram.com/v1'
+      apiParamEncode: false
 
     # if an object is passed in, override the default options
     if typeof params is 'object'
@@ -294,7 +296,7 @@ class Instafeed
   # function to inject into the document hearder
   _buildUrl: ->
     # set the base API URL
-    base = "/instagram_proxy.php?q="
+    base = @options.apiBase
 
     # get the endpoint based on @options.get
     switch @options.get
@@ -340,7 +342,9 @@ class Instafeed
 
     # add the jsonp callback
     final += "&callback=instafeedCache#{@unique}.parse"
-
+    
+    if @options.apiParamEncode is true
+      final = final.replace(/&/g,'%26')
     # return the final url
     final
 
